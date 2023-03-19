@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", init)
 $form.addEventListener('submit', e => {
     e.preventDefault();
     addTaskListItem();
-    
 })
 
 $urgency.addEventListener('change', () => {
@@ -49,6 +48,7 @@ $toDoList.addEventListener('click', e => {
     if (e.target.matches('img')) {
       if (e.target.classList.contains("done")) {
         $toDoList.removeChild(e.target.parentNode)
+        console.log(e.target.parentNode)
         addTotalTaskCompleted();
       }
       if (e.target.classList.contains("edit")) {
@@ -85,7 +85,6 @@ function createTaskListOnStartUp() {
         }
         $toDoList.appendChild(listItemContainer);
     }
-    
 }
 
 function addCompletedAndTotalTaskCount() {
@@ -115,11 +114,17 @@ function correctDateFormat(date) {
 function storeTaskItem(task) {
     if (!localStorage) return alert("localStorage is not supported");
 
-    let taskList = JSON.parse(localStorage.getItem("Tasks"))
-    
-    if (!taskList) {
-        taskList = {};
-    }
+    let taskList = JSON.parse(localStorage.getItem("Tasks")) || {};
+    const newTaskItem = {
+        id: generateUniqueId(),
+        urgency: task.urgency,
+        task: task.task,
+        "due date": task["due date"],
+        confirm: task.confirm,
+        edit: task.edit,
+        delete: task.delete,
+      };
+    console.log(newTaskItem)
 
     const taskListLength = Object.keys(taskList).length;
     taskList["Task" + (taskListLength + 1)] = task;
@@ -182,6 +187,19 @@ function addTaskInfo(className, innerText = null) {
     return item;
 }
 
+function generateUniqueId() {
+    let id;
+    let isUniqueId = false;
+    let taskList = JSON.parse(localStorage.getItem("Tasks")) || {};
+    while (!isUniqueId) {
+     
+      id = Math.floor(Math.random() * 10000000000000).toString();
+      
+      isUniqueId = !Object.keys(taskList).some(itemId => itemId === id);
+    }
+    return id;
+}
+  
 function addTaskListItem() {
     if (isBeforeToday($date.value)) return
     const listItemContainer = addTaskInfo("list-item");
@@ -197,6 +215,7 @@ function addTaskListItem() {
     $toDoList.appendChild(listItemContainer);
 
     const taskItem = {
+        'id': generateUniqueId(),
         "urgency": listItemContainer.children[0].outerHTML,
         "task": listItemContainer.children[1].outerHTML,
         "due date": listItemContainer.children[2].outerHTML,
