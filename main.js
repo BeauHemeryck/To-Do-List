@@ -115,16 +115,6 @@ function storeTaskItem(task) {
     if (!localStorage) return alert("localStorage is not supported");
 
     let taskList = JSON.parse(localStorage.getItem("Tasks")) || {};
-    const newTaskItem = {
-        id: generateUniqueId(),
-        urgency: task.urgency,
-        task: task.task,
-        "due date": task["due date"],
-        confirm: task.confirm,
-        edit: task.edit,
-        delete: task.delete,
-      };
-    console.log(newTaskItem)
 
     const taskListLength = Object.keys(taskList).length;
     taskList[generateUniqueId()] = task;
