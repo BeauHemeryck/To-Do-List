@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/reset.css" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+  </head>
+  <body ondragstart="return false;" ondrop="return false;">
+    <div id="backBox"></div>
+    <div id="dateAlertBox"><p class="center">The date you have entered has passed already.</p><button id="alertBoxBtn">Okay</button></div>
+    <header id="header">
+      <img src="/images/menu.png" id="menu-button" alt="">
+    <p id="score">Completed tasks: 
+      <span id="total-tasks-completed">0</span>/<span id="total-tasks" value="0">0</span>
+    </p>
+  </header>
+          <form action="post" id="input-form">
+            <label for="urgency">Priority:</label>
+            <select name="urgency" id="urgency" class="green" required>
+              <option value="Low" class="green">Low</option>
+              <option value="Medium" class="yellow">Medium</option>
+              <option value="High" class="orange">High</option>
+              <option value="Highest" class="red">Highest</option>
+            </select>
+            <label for="task">Task:</label>
+            <input type="text" id="task" required/>
+            <label for="date" >Due date:</label>
+            <input type="date" id="date">
+              <input type="submit" id="submit">
+          </form>
+    <section class="to-do-list" id="to-do-list">
+    
+    </section>
+    <script src="main.js"></script>
+  </body>
+</html>

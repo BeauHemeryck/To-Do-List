@@ -1,0 +1,495 @@
+@media (min-width: 1px) {
+  body {
+    background-color: midnightblue;
+    font-size: 14px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+  }
+  
+  div#backBox {
+    height: 100vh;
+    width: 100vw;
+  
+    opacity: 0;
+  
+    z-index: 14;
+    position: absolute;
+    display: none
+  }
+  
+  #dateAlertBox {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 35%;
+  
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    position: absolute;
+    z-index: 15;
+    width: 90%;
+    height: 9%;
+  
+    background: rgba(235, 27, 27, 0.952);
+    border: 2px solid black;
+    border-radius: 5px;
+
+    font-size: 16px;
+  } 
+  
+  #dateAlertBox .center {
+    color: whitesmoke;
+  }
+  #dateAlertBox #alertBoxBtn{
+    width: 25%;
+    margin: 0 0.5rem;
+    border-radius: 5px;
+  }
+  
+  header#header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: auto 0;
+  }
+  
+  #menu-button {
+    height: 2.5rem;
+    width: auto;
+    margin: 1rem 0 0 1rem;
+  
+  }
+  
+  p#score {
+  text-align: right;
+  color: aqua;
+  margin: 1rem 2rem 0 0;
+  }
+  
+  .green {
+    background-color: green;
+    border: 1px solid black;
+    padding: 0.3rem 0;
+    color: #fcfcfc;
+  }
+  
+  .yellow {
+    background: goldenrod;
+    border: 1px solid black;
+    padding: 0.3rem 0;
+    color: #fcfcfc;
+  }
+  
+  .orange {
+    background-color: rgb(255, 98, 0);
+    border: 1px solid black;
+    padding: 0.3rem 0;
+    color: #fcfcfc;
+  }
+  
+  .red {
+    background-color: red;
+    border: 1px solid black;
+    padding: 0.3rem 0;
+    color: #fcfcfc;
+  }
+  
+  .Low {
+    background-color: green;
+    padding: 0.4rem 0;
+    border:  1px solid black;
+    color: white;
+    letter-spacing: 0.05rem;
+    min-width: 3.7rem;
+    border-radius: 4px;
+  }
+  
+  .Medium {
+    background-color: goldenrod;
+    padding: 0.4rem 0;
+    border:  1px solid black;
+    color: white;
+    letter-spacing: 0.05rem;
+    min-width: 3.7rem;
+    border-radius: 4px;
+  }
+  
+  .High {
+    background-color: rgb(255, 98, 0);
+    padding: 0.4rem 0;
+    border:  1px solid black;
+    color: white;
+    letter-spacing: 0.05rem;
+    min-width: 3.7rem;
+    border-radius: 4px;
+  }
+  
+  .Highest {
+    background-color: red;
+    padding: 0.4rem 0;
+    border:  1px solid black;
+    color: white;
+    letter-spacing: 0.05rem;
+    min-width: 3.7rem;
+    border-radius: 4px;
+  }
+  
+  #input-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 280px;
+    width: 80%;
+    margin: 1rem auto;
+  
+    background-color: rgba(255, 255, 255, 0.4);
+  
+    border-radius: 5px;
+    border: 1px solid white;
+  }
+  
+  label {
+    text-align: left;
+    margin: 0 0 -0.2rem 0.2rem;
+    color: #fcfcfc;
+    font-size: larger;
+  }
+  
+  input {
+    border: 1px solid black;
+  }
+  
+  #submit {
+    margin-bottom: 0.05rem;
+  }
+  
+  .to-do-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    min-width: 280px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5px;
+    border: 1px solid black;
+    background-color: #fcfcfcc5;
+    border-radius: 5px;
+    height: 2.7rem;
+    line-height: normal;
+    margin: 0.05rem;
+    min-width: 240px;
+  } 
+  
+  .container-item {
+    font-size: 14px;
+    width: 100%;
+    overflow: hidden;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+  }
+  
+  .icon-image {
+    height: 30px;
+    max-width: 100%;
+    cursor: pointer;
+    text-align: right;
+    padding: 0.2rem;
+    border: 1px solid black;
+  }
+  
+  .image-left {
+    border-right: none;
+  }
+  
+  .image-right {
+    border-left: none;
+  }
+  
+  .task {
+    padding: 0 0.3rem;
+  }
+}
+
+/* 
+
+Medium phone
+
+*/
+
+@media all and (min-width: 375px) {
+  body {
+    font-size: 17px;
+  }
+  
+  .icon-image {
+    height: 32px;
+  }
+
+  #dateAlertBox {
+    width: 80%;
+    height: 12%;
+    font-size: 18px;
+  } 
+  
+}
+  
+/* 
+
+Large phone
+
+*/
+
+@media all and (min-width: 425px) {
+  body {
+    font-size: 18px;
+  }
+
+  #dateAlertBox {
+    width: 75%;
+    height: 12%;
+    font-size: 20px;
+  } 
+
+  #dateAlertBox #alertBoxBtn {
+    margin: 0.3rem 0;
+  }
+  
+  #input-form {
+    width: 75%;
+  }
+  
+  .to-do-list {
+    max-width: 75%;
+  }
+  
+  .list-item {
+    height: 2.9rem;
+  }
+
+  .container-item {
+    font-size: 15px;
+  }
+  
+  .icon-image {
+    height: 34px;
+  }
+}
+
+/*
+
+Tablet 
+
+*/
+
+@media all and (min-width: 768px) {
+  body {
+    font-size: 20px;
+  }
+
+  #dateAlertBox {
+    width: 50%;
+    height: 14%;
+    font-size: 21px;
+  } 
+  
+  #dateAlertBox #alertBoxBtn{
+    width: 25%;
+    margin: 1rem 0.5rem 0;
+    border-radius: 5px;
+  }
+
+  .Low {
+   flex-shrink: 1.2;
+  }
+  
+  .Medium {
+    flex-shrink: 1.2;
+  }
+  
+  .High {
+    flex-shrink: 1.2;
+  }
+  
+  .Highest {
+    flex-shrink: 1.2;
+  }
+
+  
+  #input-form {
+    width: 50%;
+  }
+  
+  .to-do-list {
+    width: 70%;
+  }
+  
+  .list-item {
+    height: 3.1rem;
+  }
+
+  .container-item {
+    font-size: 20px;
+  }
+  
+  .icon-image {
+    height: 40px;
+  }
+}
+
+/*
+
+Small laptop
+
+*/
+
+@media all and (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+
+  #dateAlertBox {
+    width: 40%;
+    height: 15%;
+    font-size: 21px;
+  } 
+  
+  #dateAlertBox #alertBoxBtn{
+    padding: 0.1rem;
+  }
+
+  .Low {
+    flex-shrink: 1.1;
+  }
+   
+  .Medium {
+    flex-shrink: 1.1;
+  }
+   
+  .High {
+    flex-shrink: 1.1;
+  }
+   
+  .Highest {
+    flex-shrink: 1.1;
+  }
+
+  #input-form {
+    width: 40%;
+  }
+  
+  .to-do-list {
+    min-width: 90%;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem;
+  }
+  
+  .list-item {
+    height: 3.3rem;
+  }
+
+  .container-item {
+    font-size: 18px;
+  }
+}
+  
+/*
+
+Large laptop
+
+*/
+
+@media all and (min-width: 1440px) {
+  body {
+    font-size: 20px;
+  }
+  
+  #dateAlertBox {
+    width: 35%;
+    height: 15%;
+    font-size: 22px;
+  } 
+
+  #input-form {
+    width: 35%;
+  }
+  
+  .to-do-list {
+    min-width: 80%;
+    gap: 0.5rem;
+  }
+  
+  .container-item {
+    font-size: 20px;
+  }
+
+  .icon-image {
+    height: 45px;
+  }
+}
+
+/*
+
+4K screen 
+
+*/
+
+@media all and (min-width: 2560px) {
+  body {
+    font-size: 22px;
+  }
+
+  #dateAlertBox {
+    width: 26.5%;
+    height: 14%;
+    font-size: 24px;
+  } 
+
+  .Low {
+    flex-shrink: 1.2;
+  }
+   
+  .Medium {
+    flex-shrink: 1.2;
+  }
+   
+  .High {
+    flex-shrink: 1.2;
+  }
+   
+  .Highest {
+    flex-shrink: 1.2;
+  }
+
+  #input-form {
+    width: 26.5%;
+  }
+  
+  .to-do-list {
+    min-width: 95%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .container-item {
+    font-size: 20px;
+  }
+
+  .icon-image {
+    height: 48px;
+  }
+}
