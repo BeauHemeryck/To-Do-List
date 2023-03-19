@@ -127,18 +127,14 @@ function storeTaskItem(task) {
     console.log(newTaskItem)
 
     const taskListLength = Object.keys(taskList).length;
-    taskList["Task" + (taskListLength + 1)] = task;
+    taskList[generateUniqueId()] = task;
     localStorage.setItem("Tasks", JSON.stringify(taskList))  
 }
 
 function storeTotalTasks(total) {
     if (!localStorage) return alert("localStorage is not supported");
 
-    let totalTasks = JSON.parse(localStorage.getItem('totalTasks'));
-
-    if (!totalTasks) {
-        totalTasks = {};
-    }
+    let totalTasks = JSON.parse(localStorage.getItem('totalTasks')) || {};
 
     localStorage.setItem("totalTasks", JSON.stringify(total));
 }
@@ -146,11 +142,7 @@ function storeTotalTasks(total) {
 function storeCompletedTaskCount(completed) {
     if (!localStorage) return alert("localStorage is not supported");
 
-    let completedTasks = JSON.parse(localStorage.getItem("completedTasks"));
-
-    if (!completedTasks) {
-        completedTasks = {};
-    }
+    let completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || {};
 
     localStorage.setItem("completedTasks", JSON.stringify(completed));
 }
@@ -169,6 +161,7 @@ function isBeforeToday(date) {
     
     inputDate.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
+
     if (inputDate == "Invalid Date" || inputDate >= today) {
         return false
     }
@@ -193,7 +186,7 @@ function generateUniqueId() {
     let taskList = JSON.parse(localStorage.getItem("Tasks")) || {};
     while (!isUniqueId) {
      
-      id = Math.floor(Math.random() * 10000000000000).toString();
+      id = Math.floor(Math.random() * 99999).toString();
       
       isUniqueId = !Object.keys(taskList).some(itemId => itemId === id);
     }
@@ -215,7 +208,6 @@ function addTaskListItem() {
     $toDoList.appendChild(listItemContainer);
 
     const taskItem = {
-        'id': generateUniqueId(),
         "urgency": listItemContainer.children[0].outerHTML,
         "task": listItemContainer.children[1].outerHTML,
         "due date": listItemContainer.children[2].outerHTML,
