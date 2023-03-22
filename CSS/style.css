@@ -55,19 +55,36 @@
     border-radius: 5px;
   }
   
+  #backArrow {
+    height: 45px;
+    width: auto;
+    margin: 0.5rem;
+  }
+
+  #backArrow:hover, #backArrow:focus {
+    cursor: pointer;
+  }
+
   header#header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: auto 0;
   }
   
-  #menu-button {
-    height: 2.5rem;
-    width: auto;
-    margin: 1rem 0 0 1rem;
-  
+  p#nav {
+    text-align: left;
+    margin: 1rem 0 0 2rem;
   }
-  
+
+  p#nav a {
+    color: aqua;
+    text-decoration: none;
+  }
+
+  p#nav a:hover {
+    text-decoration: underline;
+  }
+
   p#score {
   text-align: right;
   color: aqua;

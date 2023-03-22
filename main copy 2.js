@@ -46,24 +46,20 @@ $urgency.addEventListener('change', () => {
 
 $toDoList.addEventListener('click', e => {
     if (e.target.matches('img')) {
-      const listItem = e.target.parentNode;
-      const id = listItem.id;
       if (e.target.classList.contains("done")) {
-        $toDoList.removeChild(listItem);
-        AddCompletedTask(id);
-        removeObject(id);
+        $toDoList.removeChild(e.target.parentNode)
+        console.log(e.target.parentNode)
         addTotalTaskCompleted();
       }
       if (e.target.classList.contains("edit")) {
-        editTask(id);
+        $toDoList.removeChild(e.target.parentNode)
       }
       if (e.target.classList.contains("remove")) {
-        $toDoList.removeChild(listItem);
-        removeObject(id);
-        removeTotalTask();
+        $toDoList.removeChild(e.target.parentNode)
+        removeTotalTask()
       }
     }
-  });
+})
 
 $alertBoxBtn.addEventListener('click', () => {
     hideAlert();
@@ -94,7 +90,7 @@ function createTaskListOnStartUp() {
         let objectKeys = Object.keys(eachTaskList);
         let objectValues = Object.values(eachTaskList)
     
-        objectKeys.forEach(key => {
+        objectKeys.forEach( key => {
           switch (key) {
             case "urgency":
                 listItemContainer.appendChild(addTaskInfo(`container-item ${objectValues[0]}`, `${objectValues[0]}`))
@@ -134,20 +130,10 @@ function addCompletedAndTotalTaskCount() {
     $completedTaskCount.innerText = completedTasksCount;
 }
 
-function removeObject(ID) {
-    let taskList = JSON.parse(localStorage.getItem("Tasks"));
-    Object.keys(taskList).forEach(key => {
-        if (key === ID) {
-            delete taskList[ID]
-            taskList = JSON.stringify(taskList)
-            localStorage.setItem("Tasks", taskList)
-        }
-    })
-}
-
 function correctDateFormat(date) {
   return date = new Date(date).toLocaleDateString();
 }
+
 
 function storeTotalTasks(total) {
     if (!localStorage) return alert("localStorage is not supported");
@@ -274,83 +260,3 @@ function hideAlert() {
     $dateAlertBox.style.visibility = "hidden";
     $backBox.style.display = "none";
 }
-
-function AddCompletedTask(ID) {
-    if (!localStorage) return alert('localStorage is not supported');
-
-    let completedTaskItem = JSON.parse(localStorage.getItem("completedTaskItems")) || {};
-    let taskList = JSON.parse(localStorage.getItem("Tasks"));
-
-    Object.keys(taskList).forEach(key => {
-        if (key === ID) {
-            completedTaskItem[Object.keys(completedTaskItem).length] = taskList[ID];
-            
-            completedTaskItem =JSON.stringify(completedTaskItem)
-            localStorage.setItem("completedTaskItems", completedTaskItem)
-        }
-    })
-}
-
-function editTask(id) {
-    const listItem = document.getElementById(id);
-    const urgencyDiv = listItem.children[0];
-    const taskDiv = listItem.children[1];
-    const dueDateDiv = listItem.children[2];
-  
-    const urgency = validateUrgencyInput();
-    const task = prompt("Enter the new task:", taskDiv.innerText);
-    const dueDate = validateDateInput();
-  
-    if (urgency && task && dueDate) {
-      urgencyDiv.innerText = urgency;
-      taskDiv.innerText = task;
-      dueDateDiv.innerText = dueDate;
-
-      urgencyDiv.className = `container-item ${urgency}`;
-  
-      const updatedTaskItem = {
-        "urgency": urgency,
-        "task": task,
-        "due date": dueDate
-      };
-      storeTaskItem(updatedTaskItem, id);
-    }
-  }
-  function toTitleCase(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  }
-  
-  function validateUrgencyInput() {
-    let urgency;
-    do {
-      urgency = prompt("Enter the new urgency level (Low, Medium, High, Highest):");
-      if (urgency) {
-        urgency = toTitleCase(urgency);
-      }
-    } while (urgency && !["Low", "Medium", "High", "Highest"].includes(urgency));
-  
-    return urgency;
-  }
-
-  function isValidDate(d) {
-    return d instanceof Date && !isNaN(d);
-  }
-  
-  function validateDateInput() {
-    let date;
-    let parsedDate;
-    const dateFormat = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
-  
-    do {
-      date = prompt("Enter the new due date (DD/MM/YYYY):");
-      if (date && date.match(dateFormat)) {
-        const [_, day, month, year] = date.match(dateFormat);
-        parsedDate = new Date(year, month - 1, day);
-        if (!isValidDate(parsedDate)) {
-          parsedDate = null;
-        }
-      }
-    } while (date && !parsedDate);
-  
-    return parsedDate ? parsedDate.toLocaleDateString() : null;
-  }
